@@ -26,7 +26,7 @@ describe('bonnie string methods', () => {
         expect(bonnieMethods.bonnieSlice('Hello world!', 0, 1)).toBe('H');
     });
     it('slice ', () => {
-        expect(bonnieMethods.bonnieSlice('Hello world!', 0, -1)).toBe('Hello world');
+        expect(bonnieMethods.bonnieSlice('Hello world!', 0, -5)).toBe('Hello world');
     });
     it('slice ', () => {
         expect(bonnieMethods.bonnieSlice('Hello world!', 20)).toBe('');

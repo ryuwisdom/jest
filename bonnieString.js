@@ -78,7 +78,7 @@ output (string) : startIndex와 endIndex를 포함하는 문자열
     pass > 지정한 범위에 포함하는 문자
  */
 
-exports.bonnieSlice = function (rawString, startIndex, endIndex = -1) {
+exports.bonnieSlice = function (rawString, startIndex, endIndex = 0) {
     let result = ''
     if (typeof rawString !== 'string' || startIndex < -1) {
         return result;
@@ -96,7 +96,8 @@ exports.bonnieSlice = function (rawString, startIndex, endIndex = -1) {
         if (endIndex >= 0) return result;
         return rawString[rawString.length - 1]
     } else if (endIndex < 0) {
-        endIndex = [rawString.length - 1] - endIndex
+        endIndex = endIndex === 0 ? rawString.length : endIndex
+
     }
 
     for (let i = startIndex; i < endIndex; i++) {
