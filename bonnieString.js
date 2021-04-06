@@ -38,13 +38,13 @@ exports.bonnieIndexOf = function (rawString, targetString, startIndex = 0) {
     // 11번째에 존재하는 문자열을 넣었을때 해당 index return
     function bonnieSubstr(rawString, matchIndex, targetString) {
         let destString = ''
-        for (let i = matchIndex; i < matchIndex + targetString.length; i++){
+        for (let i = matchIndex; i < matchIndex + targetString.length; i++) {
             destString += rawString[i]
         }
         return destString == targetString
     }
 
-    if(rawString.length < targetString.length){
+    if (rawString.length < targetString.length) {
         return -1
     }
 
@@ -57,7 +57,7 @@ exports.bonnieIndexOf = function (rawString, targetString, startIndex = 0) {
 
         if (target === rawString[i]) {
             matchIndex = i
-            if(startIndex > matchIndex) {
+            if (startIndex > matchIndex) {
                 matchIndex = -1
                 continue;
             }
@@ -78,10 +78,11 @@ output (string) : startIndex와 endIndex를 포함하는 문자열
     pass > 지정한 범위에 포함하는 문자
  */
 
-exports.bonnieSlice = function (rawString, startIndex=0, endIndex) {
-    let result= ''
-    let endIndex = rawString.length
-
+exports.bonnieSlice = function (rawString, startIndex, endIndex = -1) {
+    let result = ''
+    if (typeof rawString !== 'string' || startIndex < -1) {
+        return result;
+    }
     // startIndex가 0보다 크거나 같을때 rawString의 범위에서
     // startIndex를 찾고
     // startIndex부터 endIndex범위를 구하기
@@ -89,14 +90,21 @@ exports.bonnieSlice = function (rawString, startIndex=0, endIndex) {
     // startIndex가 -1일때  rawString.length index 반환
     // startIndex가 -1미만일때  '' 반환
 
-    if(startIndex >= 0) {
-     // rawString[startIndex]
-        for(let i =0; rawString.length ;i++){
+    // startIndex = 0, endIndex = -일 때, endIndex는 rawString.length - endIndex
 
-        }
-
+    if (startIndex === -1) {
+        if (endIndex >= 0) return result;
+        return rawString[rawString.length - 1]
+    } else if (endIndex < 0) {
+        endIndex = [rawString.length - 1] - endIndex
     }
 
-
+    for (let i = startIndex; i < endIndex; i++) {
+        result += rawString[i]
+    }
+    console.log(result)
+    return result
 }
+
+
 
