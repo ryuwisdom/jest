@@ -3,15 +3,12 @@ input (string) : target string length to count
 output (number) :
     fail > -1
     pass > 각 지정값
-
-    핵심 : 요구사항 정의 및 확인
-    //
  */
 
 
 exports.bonnieLength = function (rawValue) {
     let count = -1;
-// filter NaN (Not a Number), Invalid value
+    // filter NaN (Not a Number), Invalid value
     if (typeof rawValue !== 'string') {
         return count;
     }
@@ -21,10 +18,8 @@ exports.bonnieLength = function (rawValue) {
     for (let element of rawValue) {
         count++;
     }
-    //console.log([...rawValue].length)
     return count;
 
-    // [...this].reduce((v) => v + 1, 0);
 };
 
 /*
@@ -78,33 +73,72 @@ output (string) : startIndex와 endIndex를 포함하는 문자열
     pass > 지정한 범위에 포함하는 문자
  */
 
-exports.bonnieSlice = function (rawString, startIndex, endIndex = 0) {
+exports.bonnieSlice = function (rawString, startIndex, endIndex) {
+    if (typeof rawString !== 'string') return '';
+    if (!rawString) return ''
+    if (!startIndex) startIndex = 0
+    if (!endIndex) endIndex = rawString.length
+    if (startIndex < 0) startIndex = rawString.length + startIndex
+    if (endIndex < 0) endIndex = rawString.length + endIndex
+
     let result = ''
-    if (typeof rawString !== 'string' || startIndex < -1) {
-        return result;
-    }
-    // startIndex가 0보다 크거나 같을때 rawString의 범위에서
-    // startIndex를 찾고
-    // startIndex부터 endIndex범위를 구하기
-
-    // startIndex가 -1일때  rawString.length index 반환
-    // startIndex가 -1미만일때  '' 반환
-
-    // startIndex = 0, endIndex = -일 때, endIndex는 rawString.length - endIndex
-
-    if (startIndex === -1) {
-        if (endIndex >= 0) return result;
-        return rawString[rawString.length - 1]
-    } else if (endIndex < 0) {
-        endIndex = endIndex === 0 ? rawString.length : endIndex
-
-    }
 
     for (let i = startIndex; i < endIndex; i++) {
         result += rawString[i]
     }
-    console.log(result)
+
     return result
+}
+
+
+exports.bonnieSplit = function (rawString, separator, limit) {
+
+    if (typeof rawString !== 'string') return ''
+    if (typeof separator !== 'string') return [rawString]
+    // if (!) return [rawString]
+    if (!limit) limit = rawString.length
+
+    const result = []
+    const matchIndexList = []
+    let temp = ''
+    let startIndex = 0
+
+    function bonnieSubstr(rawString, startIndex, endIndex) {
+        let destString = ''
+        for (let i = startIndex; i < endIndex; i++) {
+            destString += rawString[i]
+        }
+        return destString
+    }
+
+    // matchIndexList 생성 로직
+    for (let i = 0; i < rawString.length; i++) {
+
+        if (rawString[i] === separator) {
+            matchIndexList.push(i)
+        }
+        if (matchIndexList.length >= limit) break;
+    }
+
+
+    for (let index of matchIndexList) {
+        temp = bonnieSubstr(rawString, startIndex, index)
+        result.push(temp)
+        startIndex = index + 1
+    }
+
+    if (result.length < limit && startIndex < rawString.length) {
+        temp = bonnieSubstr(rawString, startIndex, rawString.length)
+        result.push(temp)
+    }
+
+    return result
+
+    // using separator index만 matching index 찾고 잘라버리기
+    // using indexOf
+    // match index의 배열에 그 index수대로
+
+
 }
 
 
