@@ -123,7 +123,9 @@ function bonnieSplit(rawString, separator, limit) {
         temp = bonnieSubstring(rawString, startIndex, index)
         result.push(temp)
         startIndex = index + 1
+    console.log(index)
     }
+    console.log(matchIndexList)
     if (result.length < limit) {
         temp = bonnieSubstring(rawString, startIndex, rawLength)
         result.push(temp)

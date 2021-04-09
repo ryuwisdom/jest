@@ -1,14 +1,22 @@
-const bonnieMethods = require('../bonnieString').bonnie;
+// const bonnieMethods = require('../bonnieString').bonnie;
+// const bonnieMethods = require('../reviewStringMethods').bonnie;
+const bonnieMethods = require('../newString').bonnie;
 
 describe('bonnie string methods', () => {
     // it('length ', () => {
-    //     expect(bonnieMethods.bonnieLength('CrossAngleWithBonnie')).toBe(20);
+    //     expect(bonnieMethods.length('CrossAngleWithBonnie')).toBe(20);
     // });
     // it('length ', () => {
     //     expect(bonnieMethods.bonnieLength('  ')).toBe(2);
     // });
+    it('indexOf ', () => {
+        expect(bonnieMethods.indexOf('Hello world, welcome to the universe.', 'welcome')).toBe(13);
+    });
+    it('indexOf ', () => {
+        expect(bonnieMethods.indexOf('Hello world, welcome to the universe.', 'H')).toBe(0);
+    });
     // it('indexOf ', () => {
-    //     expect(bonnieMethods.indexOf('Hello world, welcome to the universe.', 'welcome')).toBe(13);
+    //     expect(bonnieMethods.indexOf('Hello world, welcome to the universe.', '+_+')).toBe(-1);
     // });
     // it('indexOf ', () => {
     //     expect(bonnieMethods.indexOf('Hello world, welcome to the universe. you are welcome', 'welcome', 15)).toBe(46);
@@ -40,7 +48,7 @@ describe('bonnie string methods', () => {
     // it('slice ', () => {
     //     expect(bonnieMethods.bonnieSlice('Hello world!', -2, -4)).toBe('');
     // });
-
+    //
     // it('split ', () => {
     //     expect(bonnieMethods.split('How are you doing today?')).toStrictEqual(['How are you doing today?']);
     // });
@@ -50,9 +58,9 @@ describe('bonnie string methods', () => {
     // it('split ', () => {
     //     expect(bonnieMethods.split('How are you doing today?', ',')).toStrictEqual(['How are you doing today?']);
     // });
-    // it('split ', () => {
-    //     expect(bonnieMethods.split('How are you doing today?', ' ')).toStrictEqual(['How', 'are', 'you', 'doing', 'today?']);
-    // });
+    it('split ', () => {
+        expect(bonnieMethods.split('How are you doing today?', ' ')).toStrictEqual(['How', 'are', 'you', 'doing', 'today?']);
+    });
     // it('split ', () => {
     //     expect(bonnieMethods.split('How&are&you&doing&today?', '&')).toStrictEqual(['How', 'are', 'you', 'doing', 'today?']);
     // });
@@ -87,10 +95,10 @@ describe('bonnie string methods', () => {
     //     expect(bonnieMethods.replace('Bonnie has a blue house and a blue car.', /blue/g, 'red'))
     //         .toBe('Bonnie has a red house and a red car.');
     // });
-    it('replace ', () => {
-        expect(bonnieMethods.replace('Bonnie has a blue house and a blue car.', /blue/, 'red'))
-            .toBe('Bonnie has a red house and a blue car.');
-    });
+    // it('replace ', () => {
+    //     expect(bonnieMethods.replace('Bonnie has a blue house and a blue car.', /blue/, 'red'))
+    //         .toBe('Bonnie has a red house and a blue car.');
+    // });
 
 
 });
